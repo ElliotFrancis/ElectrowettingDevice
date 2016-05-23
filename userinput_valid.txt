@@ -1,0 +1,10 @@
+NEW A > 5,2
+NEW B > 7,7
+
+MIX A + B > C
+MOVE C 6,4
+ This is a comment
+NEW D > 6, 7
+MOVE D > 5, 5
+SPLIT C > E  ,C
+WAIT 10
