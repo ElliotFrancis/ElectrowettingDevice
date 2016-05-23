@@ -1,0 +1,26 @@
+This file describes the user input protocol for the program
+
+Each line consists of a single instruction
+The protocol is not case sensitive so either upper case or lower case is fine
+The protocol runs in sequential order so that the 
+
+All the possible instructions and their functionalities is listed below:
+
+NEW A > 1,1		:	Declares that there is to be a new droplet referred to as A that will be placed on the plates at position 1,1
+MIX A B	> C		:	Mixes the two droplets referred to as A and B
+SPLIT A > A,B	:	Splits the droplet referred to as A into droplets B and C
+WAIT 10			:	The device will wait for 10 seconds before continuing with the sequence
+MOVE A > 1,1	:	Move the droplet referred to as A to the position of 1,1 (this only needs to be done if you want the droplet in a specific place)
+
+
+Any instruction lines that cannot be read, will be flagged and the protocol will not run until the user accepts the errors or fixes the errors.
+
+Droplet names cannot be defined more than once under any circumstance.
+When mixing or spliting, the old names are lost until the end of the instruction sequence.
+
+Line breaks can be \r or \n or \r\n. All of which work
+
+Any instruction lines that have a space or tab as the first character or are completely blank will be ignored from the sequence.
+In this way you can add comments to the instruction sequence.
+
+There must be a space between the instruction keyword and the first parameter

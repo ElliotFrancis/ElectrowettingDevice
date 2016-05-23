@@ -1,0 +1,23 @@
+Serial Protocol between main software and arduino
+
+Main Software	Arduino		String				Meaning
+
+			-->				S[x][y]\r\n			Set plate at coordinates x, y, where x and y are integer bytes (command)
+			<--				ACK S[x][y]\r\n		Acknowledged plate set command
+			-->				C[x][y]\r\n			Clear plate at coordinates x, y, where x and y are integer bytes (command)
+			<--				ACK C[x][y]\r\n		Acknowledged plate set command
+			-->				CAP\r\n				Clear All Plates (all plates off) (command)
+			<--				ACK CAP\r\n			Acknowledged clear all plates command
+			-->				VER\r\n				Request for arduino software version number (request)
+			<--				V [v].[v].[v]\r\n	Return the version number of the running arduino software
+			
+All messages from the main software to the Arduino are 3 bytes (chars) long (not including the \n)
+All messages from the arduino back to the main software are 7 bytes (chars) long (not including the \n)
+
+All commands from the main software should be answered with an acknowledgement from the arduino that contains the original message
+
+Any requests from the main software are not to be answered with an acknowledgement but with a return message specific to the request
+(acknowledgement is not needed because the return message implies acknowledgement instead)
+
+All messages are appended with the \r\n char sequence (2 characters)
+All characters in this protocol use upper case
